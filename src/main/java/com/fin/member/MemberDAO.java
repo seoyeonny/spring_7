@@ -18,8 +18,9 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"login", memberDTO);
 	}
 	
-	public boolean nicknameCheck(String nickname){
-		return sqlSession.selectOne(nickname+"nicknameCheck", nickname);
+	public String nicknameCheck(String nickname){
+		System.out.println("DAO ID : "+nickname);
+		return sqlSession.selectOne(NAMESPACE+"nicknameCheck", nickname);
 	}
 	
 }

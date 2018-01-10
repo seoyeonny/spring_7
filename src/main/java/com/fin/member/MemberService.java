@@ -13,7 +13,7 @@ public class MemberService {
 	public MemberDTO login(MemberDTO memberDTO)throws Exception{
 		return memberDAO.login(memberDTO);
 	}
-	public boolean nicknameCheck(String nickname)throws Exception{
+	public String nicknameCheck(String nickname)throws Exception{
 		return memberDAO.nicknameCheck(nickname);
 	}
 

@@ -13,23 +13,43 @@
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.6.2/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script type="text/javascript" src="../resources/fullCal/locale/ko.js"></script>
 <script type="text/javascript">
+//멤버 체크 url = ../member/memberNickCheck
 
-window.onload = function(){
-
-    $("#partadd").click(function(){
-   	 
- 		var partner = $("#partner").val();
- 		window.open("../member/memberNickCheck?partner="+partner,"", "width=300, height=200, top=200, left=300");
- 	});
- 	
- 	$("#partner").change(function(){
- 		$("#check").val("");
- 		
- 	});
-	
-	}
 $(document).ready(function() {
 	
+	 $('#partadd').on('click', function(){
+		 var nickname = $('#partner').val();
+         $.ajax({
+             type: 'POST',
+             url: '../member/memberNickCheck',
+             data: {
+                 nickname : nickname
+             },
+             success: function(data){
+                 if(data.result == nickname){
+                   alert('추가가능한 닉네임입니다.');
+                	var text = document.getElementById("partner").value;
+                	 var plusUl = document.createElement('span');
+                	 var jbBtn=document.createElement("input");
+                	 jbBtn.setAttribute("type", "text");
+                	 jbBtn.setAttribute("name", "del");
+                	 var jbBtnText = document.createTextNode( 'X' );
+                	 jbBtn.appendChild( jbBtnText );
+                	 plusUl.innerHTML = text;   
+                	 document.getElementById('nickname').appendChild(plusUl);
+                	 document.getElementById('nickname').appendChild(jbBtn);
+                	 
+
+                 }
+                 else{
+                	 alert('등록되어있지않은 닉네임입니다.');
+                 }
+             },
+             error:function(){
+                 alert("에러입니다");
+         }
+         });    //end ajax    
+     });    //end on    	
 	$(function(){
 		var message = '${message}';
 		if(message != ""){
@@ -315,12 +335,10 @@ border-color: rgb(22,160,133);
 						<tr>
 							<td class="label2"><input type="text" id="partner"
 									name="partner" placeholder = "참석자 닉네임 입력">
-									<input id="partadd" type="button" value="추가"></td>
-							</tr>
+									<input id="partadd" type="button" value="추가"><br>
+							</tr></td>
 						</table>
-							<div style="background-color: blue; height: 45px; margin-top: 5px; margin-bottom: 5px;">
-							참석자 닉네임 들어갈 부분
-						</div>
+							<div id="nickname" style="display: inline-block;"></div>							
 						<table>
 						<tr><td class="label2">일정 배경 색상</td><tr>
 						<tr><td>

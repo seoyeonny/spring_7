@@ -14,7 +14,7 @@ display:  inline-block;}
 <body>
 <h1>일정 수정게시판</h1>
 <form action="../schedule/scheduleUpdatePOST" method="post">
-			<input type="hidden" name="id" value="s1">	
+			<input type="hidden" name="id" value="${view.id}">	
 			<input type="hidden" name="num" value="${view.num}">	
 				<table class="addT">
 				
