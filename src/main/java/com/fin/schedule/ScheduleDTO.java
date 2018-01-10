@@ -1,5 +1,8 @@
 package com.fin.schedule;
 
+import java.util.List;
+
+import com.fin.member.MemberDTO;
 
 public class ScheduleDTO {
 	private int num;
@@ -11,11 +14,19 @@ public class ScheduleDTO {
 	private String start_time;
 	private String last_time;
 	private String color;
+	private List<MemberDTO> part;
 	
 	public ScheduleDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	public List<MemberDTO> getPart() {
+		return part;
+	}
+	public void setPart(List<MemberDTO> part) {
+		this.part = part;
+	}
 	public String getColor() {
 		return color;
 	}
