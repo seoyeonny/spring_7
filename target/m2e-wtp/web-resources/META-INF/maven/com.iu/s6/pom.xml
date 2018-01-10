@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iu</groupId>
 	<artifactId>s6</artifactId>
-	<name>spring_6</name>
+	<name>spring_7</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
