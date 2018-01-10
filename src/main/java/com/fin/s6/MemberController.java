@@ -1,5 +1,8 @@
 package com.fin.s6;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,28 +47,14 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	@RequestMapping("memberNickCheck")
+	@RequestMapping(value="memberNickCheck",method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView nicknameCheck(HttpServletRequest request){
-		ModelAndView mv= new ModelAndView();
-		boolean result = true;
-		String nickname = request.getParameter("partner");
-		System.out.println(nickname);
-		if(nickname=="")
-		{
-			result=false;
-		}
-		else{
-			try {
-				result= memberService.nicknameCheck(nickname);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		mv.addObject("nickname", nickname);
-		mv.addObject("result",result);
-		mv.setViewName("common/nicknameCheck");
-		return mv;
+	public Map<String, Object> nicknameCheck(HttpServletRequest request)throws Exception{
+	    String nickname = request.getParameter("nickname");
+	    String result =memberService.nicknameCheck(nickname);
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("result", result);
+		return map;
 	}
 	
 

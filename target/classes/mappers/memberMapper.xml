@@ -6,7 +6,8 @@
   <select id="login" resultType="com.fin.member.MemberDTO" parameterType="com.fin.member.MemberDTO">
   		select * from member where id=#{id} and pw=#{pw}
   	</select>
-  <select id="nicknameCheck" resultType="boolean" parameterType="java.lang.String">
+  	
+  <select id="nicknameCheck" resultType="java.lang.String" parameterType="java.lang.String">
   select nickname from member where nickname=#{nickname}
   </select>
   </mapper>
