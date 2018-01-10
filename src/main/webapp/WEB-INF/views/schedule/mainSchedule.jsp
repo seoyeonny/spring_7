@@ -30,16 +30,18 @@ $(document).ready(function() {
                    alert('추가가능한 닉네임입니다.');
                 	var text = document.getElementById("partner").value;
                 	 var plusUl = document.createElement('span');
-                	 var jbBtn=document.createElement("input");
-                	 jbBtn.setAttribute("type", "text");
-                	 jbBtn.setAttribute("name", "del");
-                	 var jbBtnText = document.createTextNode( 'X' );
-                	 jbBtn.appendChild( jbBtnText );
+                	 var jbBtn= document.createElement("input");
+                	 jbBtn.type="button";
+                	 jbBtn.className = "delete";
+                	 jbBtn.value="X";
                 	 plusUl.innerHTML = text;   
                 	 document.getElementById('nickname').appendChild(plusUl);
                 	 document.getElementById('nickname').appendChild(jbBtn);
                 	 
-
+					$(".delete").click(function() {
+						plusUl.remove();
+						jbBtn.remove();
+					});	
                  }
                  else{
                 	 alert('등록되어있지않은 닉네임입니다.');
