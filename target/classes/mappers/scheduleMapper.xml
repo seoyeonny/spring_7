@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="scheduleMapper">
+  	
+  	<insert id="write" parameterType="com.fin.schedule.ScheduleDTO">
+  	insert into schedule values(schedule_seq.nextval, #{id}, #{title},
+  	#{pro_contents}, #{startday}, #{lastday}, #{start_time}, #{last_time},#{color})
+  	</insert>
+<!-- 캘린더에 가져와야할 아이디별 전체값들 -->
+  	<select id="jsonScheduleList" parameterType="java.lang.String" resultType="com.fin.schedule.ScheduleDTO">
+  	select * from schedule where id=#{id}
+  	</select>
+  	<!-- 캘린더에 가져와야할 아이디별 하루당 일정값들 -->
+ <select id="jsonScheduleDayList" parameterType="com.fin.schedule.ScheduleDTO" 
+ resultType="com.fin.schedule.ScheduleDTO">select * from schedule where id=#{id} and 
+ (startday = #{startday} or lastday = #{lastday})</select> 
+
+  	<delete id="ScheduleDeleteOne" parameterType="int">delete schedule where num=#{num}</delete>
+  	
+  	 <select id="ScheduleUpdateGET" parameterType="int" resultType="com.fin.schedule.ScheduleDTO">
+  	 select * from schedule where num=#{num}</select> 
+  	 
+  <update id="ScheduleUpdatePOST" parameterType="com.fin.schedule.ScheduleDTO">
+  update schedule set title=#{title}, pro_contents=#{pro_contents},STARTDAY=#{startday},LASTDAY=#{lastday},
+  START_TIME=#{start_time}, LAST_TIME=#{last_time},color=#{color} WHERE num = #{num}</update> 
+  	
+  	
+  </mapper>
